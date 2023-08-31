@@ -7,8 +7,12 @@ load_dotenv()
 
 DEBUG = False
 
+SECRET_KEY = os.getenv("SECRET_KEY")
+
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", '*').split(",")
+
 MEDIA_URL = "/media/"
-STORAGES = {"default": {"BACKEND": "storages.backends.ftp.FTPStorage"}}
+STATICFILES_STORAGE = "storages.backends.ftp.FTPStorage"
 
 FTP_STORAGE_LOCATION = F"ftp://{os.getenv('FTP_USERNAME')}:{os.getenv('FTP_PASSWORD')}@{os.getenv('FTP_HOST')}:{os.getenv('FTP_PORT')}"
 
