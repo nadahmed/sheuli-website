@@ -1,0 +1,463 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/welcome_page.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+
+        <!-- Start Slider Area -->
+        <div class="slider__container">
+            <div class="slider__activation__wrap owl-carousel owl-theme">
+                <!-- Start Single Slide -->
+                <div class="slide slider__fixed--height slide__align--center" style="background: rgba(0, 0, 0, 0) url({% static 'images/slider/bg/1.jpg' %}) no-repeat scroll 0 0 / cover;" data--black__overlay="6">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 col-lg-12">
+                                <div class="slider__inner">
+                                    <h4>SINCE 1953</h4>
+                                    <h1>WE BUILD TRUST</h1>
+                                    <p>Introducing Sheuli Builders: Crafting Dreams, Building Realities. With years of excellence, we turn visions into lasting structures. Join us to build a trusted future together.</p>
+                                    <div class="slider__btn">
+                                        <a class="htc__btn" href="contact.html">CONTACT US</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="htc__slider__fornt__img">
+                        <img src="{% static 'images/slider/fornt-img/1.png' %}" alt="slider images">
+                    </div>
+                </div>
+                <!-- End Single Slide -->
+                {% comment %} <!-- Start Single Slide -->
+                <div class="slide slider__fixed--height slide__align--center" style="background: rgba(0, 0, 0, 0) url({% static 'images/slider/bg/2.jpg' %}) no-repeat scroll 0 0 / cover;" data--black__overlay="6">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 col-lg-12">
+                                <div class="slider__inner">
+                                    <h4>SIENCE 1953</h4>
+                                    <h1>WE BUILD THE TRUST</h1>
+                                    <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment</p>
+                                    <div class="slider__btn">
+                                        <a class="htc__btn" href="contact.html">CONTACT US</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="htc__slider__fornt__img">
+                        <img src="{% static 'images/slider/fornt-img/1.png' %}" alt="slider images">
+                    </div>
+                </div>
+                <!-- End Single Slide --> {% endcomment %}
+            </div>
+        </div>
+        <!-- Start Slider Area -->
+
+                <!-- Start Offer Area -->
+                <section class="htc__offer__area htc__offer--2 pb--120 bg__gray">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
+                                <div class="offer">
+                                    <div class="offer__icon">
+                                        <img src="{% static 'images/others/icon-2/1.png' %}" alt="icon images">
+                                    </div>
+                                    <div class="offer__details">
+                                        <h2><a href="#">TOP RATED</a></h2>
+                                        <p>Our unmatched dedication to quality consistently translates into exceptional projects. Experience the epitome of construction excellence with us.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12 xmt-40">
+                                <div class="offer separator">
+                                    <div class="offer__icon">
+                                        <img src="{% static 'images/others/icon-2/2.png' %}" alt="icon images">
+                                    </div>
+                                    <div class="offer__details">
+                                        <h2><a href="#">BEST QUALITY</a></h2>
+                                        <p>We redefine industry standards through meticulous craftsmanship and rigorous attention to detail. Trust us to deliver nothing less than the best for your project's success.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-lg-4 hidden-sm col-xs-12 xmt-40">
+                                <div class="offer separator">
+                                    <div class="offer__icon">
+                                        <img src="{% static 'images/others/icon-2/3.png' %}" alt="icon images">
+                                    </div>
+                                    <div class="offer__details">
+                                        <h2><a href="#">LOW COST</a></h2>
+                                        <p>We bring your vision to life without breaking the bank. Our cost-effective solutions never compromise on quality, ensuring your project's success while keeping your budget in check.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="h1__offer__image">
+                        <img src="{% static 'images/others/3.png' %}" alt="">
+                    </div>
+                </section>
+                <!-- End Offer Area -->
+                <!-- Start About Area -->
+                <section class="htc__about__area about--2 text__pos ptb--150 bg__white">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="section__title text-center">
+                                    <h2 class="title__line">ABOUT <span class="text--theme">SHEULI BUILDERS</span></h2>
+                                    <p>Building Legacies Since 1953. At Sheuli Builders, we blend expertise with innovation to bring architectural visions to life. Our commitment to quality and precision drives us to create structures that stand as testaments to our dedication. With a proven track record, we're your partners in turning dreams into concrete realities.</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% comment %} <div class="row mt--70">
+                            <div class="col-md-4 col-lg-3 col-lg-offset-1 col-sm-6 col-xs-12">
+                                <div class="about foo">
+                                    <div class="about__inner">
+                                        <h2><a href="about.html">OUR STORY</a></h2>
+                                        <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled demoralized On the other hand, we denounce with</p>
+                                        <div class="about__btn">
+                                            <a href="about.html">READ MORE</a>
+                                        </div>
+                                        <div class="about__icon">
+                                            <img src="{% static 'images/others/icon/1.png' %}" alt="icon images">
+                                        </div>
+                                    </div>
+                                    <div class="about__inner about__hober__info">
+                                        <h2><a href="about.html">OUR STORY</a></h2>
+                                        <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled demoralized On the other hand, we denounce with</p>
+                                        <div class="about__btn">
+                                            <a href="about.html">READ MORE</a>
+                                        </div>
+                                        <div class="about__icon">
+                                            <img src="{% static 'images/others/icon/1.png' %}" alt="icon images">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-lg-3 col-sm-6 col-xs-12">
+                                <div class="about foo">
+                                    <div class="about__inner">
+                                        <h2><a href="about.html">ABOUT US</a></h2>
+                                        <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled demoralized On the other hand, we denounce with</p>
+                                        <div class="about__btn">
+                                            <a href="about.html">READ MORE</a>
+                                        </div>
+                                        <div class="about__icon">
+                                            <img src="{% static 'images/others/icon/2.png' %}" alt="icon images">
+                                        </div>
+                                    </div>
+                                    <div class="about__inner about__hober__info active">
+                                        <h2><a href="about.html">ABOUT US</a></h2>
+                                        <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled demoralized On the other hand, we denounce with</p>
+                                        <div class="about__btn">
+                                            <a href="about.html">READ MORE</a>
+                                        </div>
+                                        <div class="about__icon">
+                                            <img src="{% static 'images/others/icon/2.png' %}" alt="icon images">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-lg-3 hidden-sm col-xs-12">
+                                <div class="about foo">
+                                    <div class="about__inner">
+                                        <h2><a href="about.html">OUR CERTIFICATE</a></h2>
+                                        <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled demoralized On the other hand, we denounce with</p>
+                                        <div class="about__btn">
+                                            <a href="about.html">READ MORE</a>
+                                        </div>
+                                        <div class="about__icon">
+                                            <img src="{% static 'images/others/icon/3.png' %}" alt="icon images">
+                                        </div>
+                                    </div>
+                                    <div class="about__inner about__hober__info">
+                                        <h2><a href="about.html">OUR CERTIFICATE</a></h2>
+                                        <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled demoralized On the other hand, we denounce with</p>
+                                        <div class="about__btn">
+                                            <a href="about.html">READ MORE</a>
+                                        </div>
+                                        <div class="about__icon">
+                                            <img src="{% static 'images/others/icon/3.png' %}" alt="icon images">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> {% endcomment %}
+                    </div>
+                    <div class="text__shape">
+                        <h2>SIMPLY</h2>
+                    </div>
+                </section>
+                <!-- End About Area -->
+                <!-- start About Area -->
+                <section class="htc__service__area service--2 bg__gray">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="service__section__wrap clearfix">
+                                <!-- Start Single Service -->
+                                <div class="col-md-5 col-lg-4 col-sm-12 col-xs-12">
+                                    <div class="service__thumb">
+                                        <img src="{% static 'images/about/2.jpg' %}" alt="about image">
+                                    </div>
+                                </div>
+                                <!-- End Single Service -->
+                                <div class="col-md-7 col-lg-8 col-sm-12 col-xs-12 h1__service pt--40 pb--30">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="section__title text-left">
+                                                <h2 class="title__line">OUR <span class="text--theme">SERVICES</span></h2>
+                                                <p>Turning dreams into lasting reality. Expertly crafting inspiring spaces with unwavering precision. From concept to completion, we deliver seamless execution and top-tier craftsmanship for all your construction needs.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <!-- Start Single Service -->
+                                        <div class="col-md-4 col-lg-4 col-sm-4 col-xs-12">
+                                            <div class="service">
+                                                <div class="service__thumb">
+                                                    <a href="single-service.html">
+                                                        <img src="{% static 'images/service/1.jpg' %}" alt="service images">
+                                                    </a>
+                                                    <div class="service__hover">
+                                                        <div class="service__action">
+                                                            <a href="single-service.html">DETAILS</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="service__details">
+                                                    <h2><a href="single-service.html">CONSTRUCTION</a></h2>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End Single Service -->
+                                        <!-- Start Single Service -->
+                                        <div class="col-md-4 col-lg-4 col-sm-4 col-xs-12">
+                                            <div class="service">
+                                                <div class="service__thumb">
+                                                    <a href="single-service.html">
+                                                        <img src="{% static 'images/service/2.jpg' %}" alt="service images">
+                                                    </a>
+                                                    <div class="service__hover">
+                                                        <div class="service__action">
+                                                            <a href="single-service.html">DETAILS</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="service__details">
+                                                    <h2><a href="single-service.html">RENOVATION</a></h2>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End Single Service -->
+                                        <!-- Start Single Service -->
+                                        <div class="col-md-4 col-lg-4 col-sm-4 col-xs-12">
+                                            <div class="service">
+                                                <div class="service__thumb">
+                                                    <a href="single-service.html">
+                                                        <img src="{% static 'images/service/3.jpg' %}" alt="service images">
+                                                    </a>
+                                                    <div class="service__hover">
+                                                        <div class="service__action">
+                                                            <a href="single-service.html">DETAILS</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="service__details">
+                                                    <h2><a href="single-service.html">ARCHITECTURE</a></h2>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End Single Service -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- End About Area -->
+                <!-- Start Latest Project Area -->
+                <section class="htc__latest__project__area ptb--150 bg__white text__pos">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="section__title text-center">
+                                    <h2 class="title__line">LATEST <span class="text--theme">PROJECTS</span></h2>
+                                    <p> Showcasing Excellence. From stunning residences to functional commercial spaces, our portfolio exemplifies our construction prowess. Each project reflects our dedication to innovation and precision, creating spaces that inspire and endure. Discover the embodiment of our commitment in every detail.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="htc__latest__project__wrap h1__project clearfix mt--30">
+                                <!-- Start Single Project -->
+                                <div class="col-md-5 col-lg-5 hidden-sm col-xs-12">
+                                    <div class="project__itm foo">
+                                        <div class="project__thumb">
+                                            <a href="single-project.html">
+                                                <img src="{% static 'images/lst-project-3/1.jpg' %}" alt="project images">
+                                            </a>
+                                            <div class="project__hover__info">
+                                                <div class="project__action">
+                                                    <h2><a href="single-project.html">CONSTRUCTION</a></h2>
+                                                    <h4>DURATION : 6 MONTH</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Single Project -->
+                                <div class="col-md-7 col-lg-7 col-sm-12 col-xs-12">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <div class="project__itm foo">
+                                                <div class="project__thumb">
+                                                    <a href="single-project.html">
+                                                        <img src="{% static 'images/lst-project-3/2.jpg' %}" alt="project images">
+                                                    </a>
+                                                    <div class="project__hover__info">
+                                                        <div class="project__action">
+                                                            <h2><a href="single-project.html">CONSTRUCTION</a></h2>
+                                                            <h4>DURATION : 6 MONTH</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <div class="project__itm foo">
+                                                <div class="project__thumb">
+                                                    <a href="single-project.html">
+                                                        <img src="{% static 'images/lst-project-3/3.jpg' %}" alt="project images">
+                                                    </a>
+                                                    <div class="project__hover__info">
+                                                        <div class="project__action">
+                                                            <h2><a href="single-project.html">CONSTRUCTION</a></h2>
+                                                            <h4>DURATION : 6 MONTH</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <div class="project__itm foo">
+                                                <div class="project__thumb">
+                                                    <a href="single-project.html">
+                                                        <img src="{% static 'images/lst-project-3/4.jpg' %}" alt="project images">
+                                                    </a>
+                                                    <div class="project__hover__info">
+                                                        <div class="project__action">
+                                                            <h2><a href="single-project.html">CONSTRUCTION</a></h2>
+                                                            <h4>DURATION : 6 MONTH</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <div class="project__itm foo">
+                                                <div class="project__thumb">
+                                                    <a href="single-project.html">
+                                                        <img src="{% static 'images/lst-project-3/5.jpg' %}" alt="project images">
+                                                    </a>
+                                                    <div class="project__hover__info">
+                                                        <div class="project__action">
+                                                            <h2><a href="single-project.html">CONSTRUCTION</a></h2>
+                                                            <h4>DURATION : 6 MONTH</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text__shape">
+                        <h2>PROJECTS</h2>
+                    </div>
+                </section>
+                <!-- End Latest Project Area -->
+                <!-- Start Counter Up Area -->
+                <section class="htc__counterup__area count--2 h1__countdown bg__gray">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-12 col-xs-12">
+                                <div class="counterup__left__thumb">
+                                    <img src="{% static 'images/about/4.png' %}" alt="images">
+                                </div>
+                            </div>
+                            <div class="col-md-8 col-sm-12 col-xs-12">
+                                <div class="htc__callto__action">
+                                    <h2># THE <span class="text--theme">BEST</span></h2>
+                                    <p>What Sets Us Apart. Our unwavering commitment to perfection and innovation defines us. With a proven track record, we consistently exceed expectations, delivering projects marked by unparalleled quality and attention to detail. Backed by a skilled team, we stand out as industry leaders, transforming your aspirations into tangible masterpieces. Choose us to experience construction at its finest.</p>
+                                    <div class="htc__call__btn">
+                                        <a class="htc__btn" href="#">CONTACT US</a>
+                                    </div>
+                                </div>
+                                <div class="htc__counterup__wrap" style="background: rgba(0, 0, 0, 0) url(images/bg/10.png) no-repeat scroll center center / cover ;">
+                                    <!-- Start Single Fact -->
+                                    <div class="funfact">
+                                        <div class="fact__details">
+                                            <div class="funfact__count__inner">
+                                                <div class="fact__count ">
+                                                    <span class="count">598</span>
+                                                </div>
+                                            </div>
+                                            <div class="fact__title">
+                                                <h2>PROJECTS</h2>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <!-- End Single Fact -->
+                                    <!-- Start Single Fact -->
+                                    <div class="funfact hidden-md">
+                                        <div class="fact__details">
+                                            <div class="funfact__count__inner">
+                                                <div class="fact__count ">
+                                                    <span class="count">128</span>
+                                                </div>
+                                            </div>
+                                            <div class="fact__title">
+                                                <h2>CLIENTS</h2>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <!-- End Single Fact -->
+                                    <!-- Start Single Fact -->
+                                    <div class="funfact">
+                                        <div class="fact__details">
+                                            <div class="funfact__count__inner">
+                                                <div class="fact__count ">
+                                                    <span class="count">339</span>
+                                                </div>
+                                            </div>
+                                            <div class="fact__title">
+                                                <h2>SUCCESS</h2>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <!-- End Single Fact -->
+                                    <!-- Start Single Fact -->
+                                    <div class="funfact">
+                                        <div class="fact__details">
+                                            <div class="funfact__count__inner">
+                                                <div class="fact__count ">
+                                                    <span class="count">109</span>
+                                                </div>
+                                            </div>
+                                            <div class="fact__title">
+                                                <h2>AWARDS</h2>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <!-- End Single Fact -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- End Counter Up Area -->
+{% endblock content %}
