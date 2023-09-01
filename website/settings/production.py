@@ -47,11 +47,16 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", '*').split(",")
 
-MEDIA_URL = "/media/"
-STATICFILES_STORAGE = "storages.backends.ftp.FTPStorage"
 
-FTP_STORAGE_LOCATION = F"ftp://{os.getenv('FTP_USERNAME')}:{os.getenv('FTP_PASSWORD')}@{os.getenv('FTP_HOST')}:{os.getenv('FTP_PORT')}/{os.getenv('FTP_DIR')}"
+DEFAULT_FILE_STORAGE = 'utils.storages.FTPMediaStorage'
+STATICFILES_STORAGE = "utils.storages.FTPStaticfileStorage"
 
+MEDIA_URL = os.getenv("MEDIA_URL", "/media/")
+STATIC_URL = os.getenv("STATIC_URL", "/static/")
+
+FTP_STATIC_STORAGE_LOCATION = F"ftp://{os.getenv('FTP_USERNAME')}:{os.getenv('FTP_PASSWORD')}@{os.getenv('FTP_HOST')}:{os.getenv('FTP_PORT')}/{os.getenv('FTP_STATIC_DIR')}"
+
+FTP_MEDIA_STORAGE_LOCATION = F"ftp://{os.getenv('FTP_USERNAME')}:{os.getenv('FTP_PASSWORD')}@{os.getenv('FTP_HOST')}:{os.getenv('FTP_PORT')}/{os.getenv('FTP_MEDIA_DIR')}"
 
 DATABASES['default'] = dj_database_url.config(
     conn_max_age=600,
