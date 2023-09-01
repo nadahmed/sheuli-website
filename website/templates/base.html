@@ -75,8 +75,9 @@
                     <div class="row">
                         <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
                             <ul class="heaher__top__left">
-                                <li><i class="fa fa-clock-o"></i>7.30 AM  -  9.30 PM</li>
+                                <li><i class="fa fa-clock-o"></i>10:00 AM  -  4:00 PM</li>
                                 <li><a href="tel:+8801778487138"><i class="fa fa-phone"></i>(880) 1778 487 138</a></li>
+                                <li><a href="mailto:sheulibuilders@gmail.com"><i class="fa fa-envelope"></i>sheulibuilders@gmail.com</a></li>
                             </ul>
                         </div>
                         {% comment %} <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
@@ -101,8 +102,8 @@
                     <div class="row">
                         <div class="col-md-2 col-sm-6 col-xs-7">
                             <div class="logo">
-                                <a href="index.html">
-                                    <img src="{% static 'images/logo/logo.svg' %}" style="max-width: none; height: 60px" alt="logo image">
+                                <a href="/">
+                                    <img src="{% static 'images/logo/logo.png' %}" style="max-width: none; height: 60px" alt="logo image">
                                 </a>
                             </div>
                         </div>
@@ -111,20 +112,20 @@
                             <nav class="main__menu__nav  hidden-xs hidden-sm">
                                 <ul class="main__menu">
                                     <li><a href="/">HOME</a></li>
-                                    <li><a href="about.html">ABOUT</a></li>
-                                    <li><a href="service.html">SERVICES</a></li>
+                                    <li><a href="#">ABOUT</a></li>
+                                    <li><a href="#">SERVICES</a></li>
                                     <li ><a href="#">PROJECTS</a></li>
-                                    <li><a href="contact.html">CONTACT</a></li>
+                                    <li><a href="#">CONTACT</a></li>
                                 </ul>
                             </nav>
                             <div class="mobile-menu clearfix visible-xs visible-sm">
                                 <nav id="mobile_dropdown">
                                     <ul>
-                                        <li><a href="index.html">Home</a></li>
-                                        <li><a href="about.html">ABOUT</a></li>
-                                        <li><a href="service.html">SERVICES</a></li>
+                                        <li><a href="#">Home</a></li>
+                                        <li><a href="#">ABOUT</a></li>
+                                        <li><a href="#">SERVICES</a></li>
                                         <li><a href="#">PROJECTS</a></li>
-                                        <li><a href="contact.html">contact</a></li>
+                                        <li><a href="#">contact</a></li>
                                     </ul>
                                 </nav>
                             </div> 
@@ -273,7 +274,7 @@
         <!-- End Team Area --> {% endcomment %}
 
         <!-- Start Testimonial Area -->
-        <section class="htc__testimonial__area ptb--130" data--gray__overlay="9.5" style="background: rgba(0, 0, 0, 0) url(images/bg/1.jpg) no-repeat fixed center center / cover ;">
+        <section class="htc__testimonial__area ptb--130" data--gray__overlay="9.5" style="background: rgba(0, 0, 0, 0) url({% static 'images/bg/1.jpg' %}) no-repeat fixed center center / cover ;">
             <div class="container">
                 <div class="row">
                     {% comment %} <div class="col-md-6 col-lg-5 col-sm-12 col-xs-12">
@@ -337,7 +338,7 @@
                                 <h2 class="title__line">REQUEST A <span class="text--theme">QUOTE</span></h2>
                                 <p>Unlocking Your Project's Potential. Our team is ready to turn your vision into a reality. Let's discuss your project and create a tailored quote that aligns with your goals. Get in touch today to embark on a journey of exceptional craftsmanship and construction excellence.</p>
                             </div>
-                            <form id="contact-form" action="https://d29u17ylf1ylz9.cloudfront.net/simply-construction/mail-faq.php" method="post">
+                            <form id="contact-form" action="#" method="post">
                                 <div class="clint__comment__form">
                                     <div class="single__cl__form">
                                         <input name="name" type="text" placeholder="Name">
@@ -351,7 +352,7 @@
                                         <textarea name="message" placeholder="Message"></textarea>
                                     </div>
                                     <div class="clint__submit__btn">
-                                        <button class="submit htc__btn" type="submit">
+                                        <button class="submit htc__btn" type="submit" disabled>
                                             SEND MESSAGE 
                                         </button>
                                     </div>
@@ -520,7 +521,7 @@
                                     <i class="zmdi zmdi-pin"></i>
                                 </div>
                                 <div class="ht__address__details">
-                                    <p>Stock Building, 125 Main Street <br>1st Lane, San Francisco, USA</p>
+                                    <p>33/35 Jafri Bhaban, <br>Kawran Bazar, Dhaka-1215</p>
                                 </div>
                             </div>
                             <!-- End Single Address -->
@@ -530,8 +531,8 @@
                                     <i class="fa fa-globe" aria-hidden="true"></i>
                                 </div>
                                 <div class="ht__address__details">
-                                    <p><a href="#">info@example.com</a></p>
-                                    <p><a href="#">www.example.com</a></p>
+                                    <p><a href="mailto:sheulibuilders@gmail.com">sheulibuilders@gmail.com</a></p>
+                                    <p><a href="https://www.sheuli.com">https://www.sheuli.com</a></p>
                                 </div>
                             </div>
                             <!-- End Single Address -->
@@ -542,6 +543,7 @@
                                 </div>
                                 <div class="ht__address__details">
                                     {% comment %} <p><a href="#">(001) 24568 365 987</a></p> {% endcomment %}
+                                    <p><a href="tel:+8801778487138">(880) 1778 487 138</a></p>
                                     <p><a href="tel:+8801778487138">(880) 1778 487 138</a></p>
                                 </div>
                             </div>
@@ -554,7 +556,7 @@
         <!-- End Contact Address -->
         <!-- Start Footer Area -->
         <footer class="htc__footer__area">
-            <div class="footer__top ptb--130" data--1f2d30__overlay="9.5" style="background: rgba(0, 0, 0, 0) url(images/bg/2.jpg) no-repeat fixed center center / cover ;">
+            <div class="footer__top ptb--130" data--1f2d30__overlay="9.5" style="background: rgba(0, 0, 0, 0) url({% static 'images/bg/2.jpg' %}) no-repeat fixed center center / cover ;">
                 <div class="container">
                     <div class="row">
                         <div class="htc__footer__wrap clearfix">
@@ -578,15 +580,15 @@
                                     </div>
                                     <div class="footer__link">
                                         <ul class="ft__menu">
-                                            <li><a href="service.html">Services</a></li>
-                                            <li><a href="projects-one.html">Projects</a></li>
+                                            <li><a href="#">Services</a></li>
+                                            <li><a href="#">Projects</a></li>
                                             <li><a href="#">Features</a></li>
-                                            <li><a href="blog.html">blog</a></li>
+                                            <li><a href="#">blog</a></li>
                                         </ul>
                                         <ul class="ft__menu">
                                             <li><a href="#">Quote</a></li>
-                                            <li><a href="projects-one.html">Projects</a></li>
-                                            <li><a href="contact.html">Contact</a></li>
+                                            <li><a href="#">Projects</a></li>
+                                            <li><a href="#">Contact</a></li>
                                             <li><a href="#">Features</a></li>
                                         </ul>
                                     </div>
@@ -642,7 +644,7 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="copyright__inner">
-                                <p>Copyright <a href="#" target="_blank">Sheuli Builders.</a>
+                                <p>Copyright - <a href="#" target="_blank">Sheuli Builders.</a>
                                 All Rights Reserved 2023.</p>
                             </div>
                         </div>
