@@ -10,6 +10,7 @@ __pycache__
 *.swp
 /venv/
 /tmp/
+/logs/
 /.vagrant/
 /Vagrantfile.local
 node_modules/
