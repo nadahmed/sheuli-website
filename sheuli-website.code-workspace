@@ -1,13 +1,12 @@
 {
 	"folders": [
 		{
-			"path": "../.."
+			"path": "."
 		}
 	],
 	"settings": {
 		"emmet.includeLanguages": {
-			"django-html": "html",
-	   }
-	},
-	
+			"django-html": "html"
+		}
+	}
 }

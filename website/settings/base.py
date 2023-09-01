@@ -27,6 +27,7 @@ DEBUG_PROPAGATE_EXCEPTIONS=True
 INSTALLED_APPS = [
     "home",
     "search",
+    "projects",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
     "wagtail.embeds",

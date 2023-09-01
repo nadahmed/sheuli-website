@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load wagtailcore_tags wagtailimages_tags static %}
+
+{% block content %}
+        <!-- Start Bradcaump area -->
+        <div class="ht__bradcaump__area" data--black__overlay="6" style="background: rgba(0, 0, 0, 0) url({% static 'images/bg/5.jpg' %}) no-repeat scroll center center / cover ;">
+            <div class="ht__bradcaump__wrap">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="bradcaump__inner text-center">
+                                <h2 class="bradcaump-title">PROJECTS</h2>
+                                {% comment %} <nav class="bradcaump-inner">
+                                  <a class="breadcrumb-item" href="/">Home</a>
+                                  <span class="brd-separetor">-</span>
+                                  <span class="breadcrumb-item active">PROJECTS</span>
+                                </nav> {% endcomment %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Bradcaump area -->
+        <!-- Start Latest Project Area -->
+        <section class="htc__latest__project__area ptb--50 bg__white">
+            <div class="container">
+                <div class="row">
+                    <p class="text-center" style="margin:2rem 0;">{{ page.intro }}</p>
+                    <div class="htc__latest__project__wrap clearfix">
+                        <!-- Start Single Project -->
+                        {% for project in projects %}
+                        <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12" style="margin:0.2rem;">
+                            <div class="project foo">
+                                <div class="project__thumb">
+                                    <a href="{% pageurl project %}">
+                                        {% for block in project.images|slice:":1" %}
+                                        {% if block.block_type == 'image' %}
+                                        {% image block.value min-500x500 as img %}
+                                        <img src="{{ img.url }}" alt="{{ img.alt }}">
+                                        {% endif %}
+                                        {% endfor %}
+                                    </a>
+                                    <div class="project__hover__info">
+                                        <div class="project__action">
+                                            <h2><a href="{% pageurl project %}">{{ project.title }}</a></h2>
+                                            <h4 style="padding: 4rem;">{{ project.short_description }}</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <!-- End Single Project -->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Latest Project Area -->
+{% endblock %}
