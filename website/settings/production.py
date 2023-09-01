@@ -50,7 +50,7 @@ ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", '*').split(",")
 MEDIA_URL = "/media/"
 STATICFILES_STORAGE = "storages.backends.ftp.FTPStorage"
 
-FTP_STORAGE_LOCATION = F"ftp://{os.getenv('FTP_USERNAME')}:{os.getenv('FTP_PASSWORD')}@{os.getenv('FTP_HOST')}:{os.getenv('FTP_PORT')}"
+FTP_STORAGE_LOCATION = F"ftp://{os.getenv('FTP_USERNAME')}:{os.getenv('FTP_PASSWORD')}@{os.getenv('FTP_HOST')}:{os.getenv('FTP_PORT')}/{os.getenv('FTP_DIR')}"
 
 
 DATABASES['default'] = dj_database_url.config(
