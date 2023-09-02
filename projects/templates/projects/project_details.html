@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
-{% load static wagtailimages_tags wagtailcore_tags %}
+{% load static wagtailimages_tags wagtailcore_tags wagtailmetadata_tags %}
+
+{% block meta_tag %}
+  {% meta_tags %}
+{% endblock %}
 
 {% block extra_css %}
 

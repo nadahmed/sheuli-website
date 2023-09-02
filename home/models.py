@@ -1,7 +1,7 @@
-from django.db import models
+from wagtailmetadata.models import MetadataPageMixin
 
 from wagtail.models import Page
 
 
-class HomePage(Page):
+class HomePage(MetadataPageMixin ,Page):
     pass

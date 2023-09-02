@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
-{% load wagtailcore_tags wagtailimages_tags static %}
+{% load wagtailcore_tags wagtailimages_tags static wagtailmetadata_tags%}
+
+{% block meta_tag %}
+  {% meta_tags %}
+{% endblock %}
 
 {% block content %}
         <!-- Start Bradcaump area -->

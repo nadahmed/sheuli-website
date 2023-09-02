@@ -3,9 +3,9 @@ from wagtail.models import Page
 from wagtail.fields import StreamField
 from wagtail.admin.panels import FieldPanel
 from wagtail.images.blocks import ImageChooserBlock
+from wagtailmetadata.models import MetadataPageMixin
 
-
-class ProjectIndex(Page):
+class ProjectIndex(MetadataPageMixin, Page):
     intro = models.TextField()
 
     content_panels = Page.content_panels + [
@@ -18,7 +18,7 @@ class ProjectIndex(Page):
         context['projects'] = projects.specific()
         return context
 
-class ProjectDetails(Page):
+class ProjectDetails(MetadataPageMixin, Page):
     short_description = models.TextField()
     description = models.TextField()
     images =  StreamField([
