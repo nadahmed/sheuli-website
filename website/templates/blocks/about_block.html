@@ -1,0 +1,27 @@
+{% load wagtailimages_tags wagtailcore_tags %}
+
+<!-- About Start -->
+<div class="about wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-5 col-md-6 {% if value.image_position == 'right' %} order-last {% endif %}">
+                <div class="about-img">
+                    {% image value.image fill-700x800 %}
+                </div>
+            </div>
+            <div class="col-lg-7 col-md-6">
+                <div class="section-header text-left">
+                    <p>{{ value.sub_title }}</p>
+                    <h2>{{ value.title }}</h2>
+                </div>
+                <div class="about-text">
+                    {{ value.description|richtext }}
+                    {% if value.button_link %}
+                    <a class="btn" href="{% pageurl value.button_link %}">{{ value.button_text }}</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- About End -->

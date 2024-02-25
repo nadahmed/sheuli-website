@@ -16,8 +16,6 @@ import os
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
-DEBUG_PROPAGATE_EXCEPTIONS=True
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -28,9 +26,15 @@ INSTALLED_APPS = [
     "home",
     "search",
     "projects",
+    "generic",
+    "contact",
+    "newsletter",
 
+    'captcha',
+    'wagtail_modeladmin',
     'wagtailmetadata',
-    
+    'wagtailmenus',
+
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
     "wagtail.embeds",
@@ -41,6 +45,8 @@ INSTALLED_APPS = [
     "wagtail.images",
     "wagtail.search",
     "wagtail.admin",
+    "wagtail.contrib.simple_translation",
+    'wagtail.contrib.settings',
     "wagtail",
     "modelcluster",
     "taggit",
@@ -50,6 +56,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.sitemaps",
 ]
 
 MIDDLEWARE = [
@@ -61,6 +68,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
 ]
 
 ROOT_URLCONF = "website.urls"
@@ -76,8 +84,11 @@ TEMPLATES = [
             "context_processors": [
                 "django.template.context_processors.debug",
                 "django.template.context_processors.request",
+                'django.template.context_processors.i18n',
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                'wagtailmenus.context_processors.wagtailmenus',
+                'wagtail.contrib.settings.context_processors.settings',
             ],
         },
     },
@@ -119,7 +130,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "en"
 
 TIME_ZONE = "UTC"
 
@@ -128,6 +139,8 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+WAGTAIL_I18N_ENABLED = True
 
 
 # Static files (CSS, JavaScript, Images)
@@ -156,7 +169,7 @@ MEDIA_URL = "/media/"
 
 # Wagtail settings
 
-WAGTAIL_SITE_NAME = "website"
+WAGTAIL_SITE_NAME=os.environ.get("WAGTAIL_SITE_NAME", "Sheuli Builders")
 
 # Search
 # https://docs.wagtail.org/en/stable/topics/search/backends.html
@@ -168,4 +181,8 @@ WAGTAILSEARCH_BACKENDS = {
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
-WAGTAILADMIN_BASE_URL = "http://example.com"
+WAGTAILADMIN_BASE_URL = "https://sheuli.com"
+
+SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

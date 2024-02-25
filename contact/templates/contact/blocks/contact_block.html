@@ -1,0 +1,85 @@
+<!-- Contact Start -->
+<div class="contact wow fadeInUp">
+    <div class="container">
+        <div class="section-header text-center">
+            <p>Get In Touch</p>
+            <h2>For Any Query</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="flaticon-address"></i>
+                        <div class="contact-text">
+                            <h2>Location</h2>
+                            <p>{{ settings.home.GenericSettings.company_address }}</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="flaticon-call"></i>
+                        <div class="contact-text">
+                            <h2>Phone</h2>
+                            <p>{{ settings.home.GenericSettings.company_phone }}</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="flaticon-send-mail"></i>
+                        <div class="contact-text">
+                            <h2>Email</h2>
+                            <p>{{ settings.home.GenericSettings.company_email }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="contact-form">
+                    <div id="success"></div>
+                    
+                    <form name="sentMessage" id="contactForm" method="post" action="{% url 'contact:index' %}">
+                        {% csrf_token %}
+                        {% for field in form %}
+                        <div class="control-group">
+                            {{ field }}
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        {% endfor %}
+                        <div>
+                            <button class="btn" type="submit" id="sendMessageButton">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="module">
+    import axios from 'axios';
+
+    const form = document.getElementById('contactForm');
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+
+        const formData = new FormData(form);
+        
+        axios.post('{% url "contact:index" %}', formData)
+        .then(function (response){
+            const _data = response.data;
+            // {"url": "/contact_/success/"}
+            window.location.href = _data.url;
+        })
+        .catch(function (error){
+            console.error(error);
+            const _data = error.response.data;
+            for (const [key, value] of Object.entries(_data.errors)) {
+                const field = form.querySelector(`[name="${key}"]`);
+                const helpBlock = field.nextElementSibling;
+                helpBlock.textContent = value[0];
+            }
+        })
+    });
+</script>
+<!-- Contact End -->

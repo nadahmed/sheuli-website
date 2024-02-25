@@ -1,0 +1,21 @@
+{% load menu_tags %}
+
+<div class="col-md-6 col-lg-3">
+    <div class="footer-link">
+        <h2>{{ menu_instance.heading|default:"Useful Links" }}</h2>
+        {% for item in menu_items  %}
+        <a href="{{ item.href }}">{{ item.text }}</a>
+        {% endfor %}
+        {% comment %} <a href="">Contact Us</a>
+        <a href="">Our Team</a>
+        <a href="">Projects</a>
+        <a href="">Testimonial</a> {% endcomment %}
+    </div>
+</div>
+{% comment %} <div class="container footer-menu">
+    <div class="f-menu">
+        {% for item in menu_items %}
+        <a href="{{ item.href }}">{{ item.text }}</a>
+        {% endfor %}
+    </div>
+</div> {% endcomment %}

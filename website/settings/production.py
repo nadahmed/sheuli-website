@@ -7,6 +7,8 @@ load_dotenv()
 
 DEBUG = False
 
+DEBUG_PROPAGATE_EXCEPTIONS=True
+
 # LOGGING
 LOG_DIR = os.path.join(BASE_DIR, 'logs')
 LOG_FILE = '/debug.log'

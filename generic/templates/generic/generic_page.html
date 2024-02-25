@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+    {% include 'generic/includes/banner.html' %}
+    {% for block in page.body %}
+    {% if block.block_type == 'paragraph' %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+            {% include_block block %}
+            </div>
+        </div>
+    </div>
+    {% else %}
+    {% include_block block %}
+    {% endif %}
+    {% endfor %}
+{% endblock %}

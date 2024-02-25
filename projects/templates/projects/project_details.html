@@ -12,108 +12,59 @@
 {% endblock extra_css %}
 
 {% block content %}
-        <!-- Start Bradcaump area -->
-        <div class="ht__bradcaump__area" data--black__overlay="6" style="background: rgba(0, 0, 0, 0) url({% static 'images/bg/5.jpg' %}) no-repeat scroll center center / cover ;">
-            <div class="ht__bradcaump__wrap">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div class="bradcaump__inner text-center">
-                                <h2 class="bradcaump-title">{{ page.title }}</h2>
-                                <nav class="bradcaump-inner">
-                                  <a class="breadcrumb-item" href="/">Home</a>
-                                  <span class="brd-separetor">-</span>
-                                  <a class="breadcrumb-item" href="{% pageurl page.get_parent %}">PROJECTS</a>
-                                  {% comment %} <span class="brd-separetor">-</span> {% endcomment %}
-                                  {% comment %} <span class="breadcrumb-item active">{{ page.title }}</span> {% endcomment %}
-                                </nav>
-                            </div>
+
+{% include 'generic/includes/banner.html' %}
+<!-- Start Blog Area -->
+<section class="htc__project__details__page ptb--50 bg__white">
+    <div class="container">
+
+        <div id="nanogallery"></div>
+
+        <div class="single__project__details" style="width: 100%; margin:4rem 0;">
+            <h2>PROJECT DESCRIPTION</h2>
+            <p>{{ page.description|richtext }}</p>
+        </div>
+    </div>
+</section>
+<!-- End Blog Area -->
+
+<!-- Portfolio Start -->
+<div class="portfolio">
+    <div class="container">
+        <div class="section-header text-center">
+            {% comment %} <p>{{ page.title }}</p> {% endcomment %}
+            <h3>OTHER PROJECTS</h3>
+        </div>
+        <div class="row portfolio-container">
+            {% for project in related %}
+            <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item first wow fadeInUp" data-wow-delay="0.1s">
+                <div class="portfolio-warp">
+                    <div class="portfolio-img">
+                        {% for block in project.images|slice:":1" %}
+                        {% if block.block_type == 'image' %}
+                        {% image block.value fill-500x300 %}
+                        {% endif %}
+                        {% endfor %}
+                        {% comment %} <img src="{% static 'img/portfolio-1.jpg' %}" alt="Image"> {% endcomment %}
+                        <div class="portfolio-overlay">
+                            <p>{{ project.short_description }}</p>
                         </div>
                     </div>
+                    <div class="portfolio-text">
+                        <h3>{{ project.title }}</h3>
+                        <a class="btn" href="{% pageurl project %}">></a>
+                    </div>
                 </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="row">
+            <div class="col-12 load-more">
+                <a class="btn" href="{% pageurl page.get_parent %}">See More</a>
             </div>
         </div>
-        <!-- End Bradcaump area -->
-        <!-- Start Blog Area -->
-        <section class="htc__project__details__page ptb--50 bg__white">
-            <div class="container">
-
-                {% comment %} <h1 style="margin-bottom:2rem; text-align:center;" class="text--theme">{{ page.title }}</h1> {% endcomment %}
-
-                <div id="nanogallery"></div>
-
-                <div class="single__project__details" style="width: 100%; margin:4rem 0;">
-                    <h2>PROJECT DESCRIPTION</h2>
-                    <p>{{ page.description }}</p>
-                </div>
-                {% comment %} <div class="row">
-                    <div class="col-md-12">
-                        <div class="htc__pro__desc__container">
-                            <!-- start Single Details -->
-                            <div class="single__project__details">
-                                <h2>CONSTRUCTION</h2>
-                                <p>On the other hand, we denounce with righteous tion and dislike men who are so beguiled demorad On the ther hand, we denounce with pain and trouble that re bound to ensue; and equal blame belongs to those ho fail in their sty through weakness of will, ch is the same as saying through shrinking from</p>
-                            </div>
-                            <!-- End Single Details -->
-                            <!-- start Single Details -->
-                            <div class="single__project__details">
-                                <h2>PROJECT DESCRIPTION</h2>
-                                <p>On the other hand, we denounce with righteous indignion and dislike men who are so beguiled demoralized On the er hand, we denounce with pain and trouble that are und to ensue; and ual blame belongs to those who win</p>
-                                <p>On the other hand, we denounce with righteous indignion and dislike men who are so beguiled demoralized On the er hand, we denounce with pain</p>
-                            </div>
-                            <!-- End Single Details -->
-                            <!-- start Single Details -->
-                            <div class="single__project__details">
-                                <h2>IMPORTANT FACTS</h2>
-                                <p>On the other hand, we denounce with righteous an dion and dislike men who are so beguiled</p>
-                                <ul class="facts__list">
-                                    <li><a href="#"><i class="fa fa-angle-double-right"></i>On the other hand, we denounce with rious indignion and dislike men who we are</a></li>
-                                    <li><a href="#"><i class="fa fa-angle-double-right"></i>On the other hand, we denounce with rious indignion and dislike men who we are</a></li>
-                                </ul>
-                            </div>
-                            <!-- End Single Details -->
-                        </div>
-                    </div>
-                </div> {% endcomment %}
-            </div>
-        </section>
-        <!-- End Blog Area -->
-        <!-- Start Service Area -->
-        <section class="htc__project__area bg__white pb--150">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="section__title text-center">
-                            <h2 class="title__line">OTHER <span class="text--theme">PROJECTS</span></h2>
-                            <p>A Showcase of Excellence. Explore our portfolio, from homes to commercial landmarks, highlighting our commitment to quality and innovation.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="rl__project__wrap clearfix mt--60 xmt-40">
-                        <!-- Start Single Service -->
-                        {% for project in related %}
-                        <div class="col-md-3 col-lg-3 col-sm-4 col-xs-12">
-                            <div class="rl__project foo">
-                                <div class="project__thumb">
-                                    <a href="{% pageurl project %}">
-                                        {% for block in project.images|slice:":1" %}
-                                        {% if block.block_type == 'image' %}
-                                        {% image block.value min-500x500 as img %}
-                                        <img src="{{ img.url }}" alt="{{ img.alt }}">
-                                        {% endif %}
-                                        {% endfor %}
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        {% endfor %}
-                        <!-- End Single Service -->
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- End Service Area -->
+    </div>
+</div>
 {% endblock %}
 
 {% block extra_js %}

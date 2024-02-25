@@ -1,0 +1,23 @@
+{% load wagtailcore_tags %}
+
+<!-- Page Header Start -->
+<div class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2>{{ page.title }}</h2>
+            </div>
+            <div class="col-12">
+                {% if self.get_ancestors|length > 1 %}
+                    {% for p in self.get_ancestors %}
+                        {% if p.is_root == False %}
+                            <a href="{{ p.url }}">{{ p.title }}</a>
+                        {% endif %}
+                    {% endfor %}
+                    <a href="{% pageurl page %}">{{ self.title }}</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->

@@ -1,0 +1,51 @@
+{% load static %}
+{% load i18n %}
+{% load wagtailcore_tags %}
+
+<!-- Nav Bar Start -->
+<div class="nav-bar">
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+            <a href="#" class="navbar-brand">MENU</a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                <div class="navbar-nav mr-auto">
+                    {% for item in menu_items %}
+                        <a href="{{ item.href }}" class="nav-item nav-link {{ item.active_class }}">{{ item.text }}</a>
+                            {% if item.sub_menu %}
+                                <ul class="sub-menu">
+                                    {% for sub_item in item.sub_menu.items %}
+                                        <li class="{{ sub_item.active_class }}"><a href="{{ sub_item.href }}">{{ sub_item.text }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                    {% endfor %}
+                </div>
+                {% comment %} <div class="navbar-nav mr-auto">
+                    <a href="index.html" class="nav-item nav-link active">Home</a>
+                    <a href="about.html" class="nav-item nav-link">About</a>
+                    <a href="service.html" class="nav-item nav-link">Service</a>
+                    <a href="team.html" class="nav-item nav-link">Team</a>
+                    <a href="portfolio.html" class="nav-item nav-link">Project</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
+                        <div class="dropdown-menu">
+                            <a href="blog.html" class="dropdown-item">Blog Page</a>
+                            <a href="single.html" class="dropdown-item">Single Page</a>
+                        </div>
+                    </div>
+                    <a href="contact.html" class="nav-item nav-link">Contact</a>
+                </div> {% endcomment %}
+                {% if settings.home.GenericSettings.get_quote_page %}                
+                <div class="ml-auto">
+                    <a class="btn" href="{% pageurl settings.home.GenericSettings.get_quote_page %}">Get A Quote</a>
+                </div>
+                {% endif %}
+            </div>
+        </nav>
+    </div>
+</div>
+<!-- Nav Bar End -->

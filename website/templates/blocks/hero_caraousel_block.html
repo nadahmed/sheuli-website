@@ -1,0 +1,32 @@
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+<!-- Carousel Start -->
+<div id="carousel" class="carousel slide" data-ride="carousel">
+
+    <div class="carousel-inner">
+        {% for block in value.items %}
+        <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %}">
+            {% image block.background_image fill-1920x1080 %}
+            <div class="carousel-caption">
+                <p class="animated fadeInRight">{{ block.sub_title }}</p>
+                <h1 class="animated fadeInLeft">{{ block.title }}</h1>
+                {% if block.button_link %}
+                <a class="btn animated fadeInUp" href="{% pageurl block.button_link %}">{{ block.button_text }}</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% if value.items|length > 1 %}
+    <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+    {% endif %}
+</div>
+<!-- Carousel End -->

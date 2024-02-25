@@ -1,0 +1,38 @@
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+<!-- Service Start -->
+<div class="service">
+    <div class="container">
+        <div class="section-header text-center">
+            <p>Our Projects</p>
+            <h2>Browse our latest projects</h2>
+        </div>
+        <div class="row">
+            {% for project in projects %}
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.{{ forloop.counter }}s">
+                <div class="service-item">
+                    <div class="service-img">
+                        {% for block in project.images|slice:":1" %}
+                            {% if block.block_type == 'image' %}
+                                {% image block.value fill-400x400 %}
+                            {% endif %}
+                        {% endfor %}
+                        {% comment %} <img src="{% static 'img/service-1.jpg' %}" alt="Image"> {% endcomment %}
+                        <div class="service-overlay">
+                            <p>{{project.short_description|richtext}}</p>
+                        </div>
+                    </div>
+                    <div class="service-text">
+                        <h3>{{ project.title }}</h3>
+                        <a class="btn" href="{% pageurl project %}">></a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div style="text-align: center;" class="wow fadeInUp">            
+            <a  href="{% pageurl projects.0.get_parent %}" class="btn fill">View All Projects</a>
+        </div>
+    </div>
+</div>
+<!-- Service End -->

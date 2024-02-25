@@ -1,0 +1,30 @@
+{% load static wagtailimages_tags %}
+
+<!-- Testimonial Start -->
+<div class="testimonial wow fadeIn" data-wow-delay="0.1s">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="testimonial-slider-nav">
+                    {% for item in value.items %}
+                    <div class="slider-nav">{% image item.image fill-200x200 %}</div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="testimonial-slider">
+                    {% for item in value.items %}
+                    <div class="slider-item">
+                        <h3>{{ item.name }}</h3>
+                        <h4>{{ item.position }}</h4>
+                        <p>{{ item.quote }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Testimonial End -->

@@ -1,0 +1,118 @@
+{% load wagtailcore_tags %}
+{% load menu_tags %}
+{% load newsletter_tags %}
+
+{% wagtail_site as current_site %}
+
+
+<!-- Footer Start -->
+<div class="footer wow fadeIn" data-wow-delay="0.3s">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-lg-3">
+                <div class="footer-contact">
+                    <h2>Office Contact</h2>
+                    <p><i class="fa fa-map-marker-alt"></i>{{ settings.home.GenericSettings.company_address }}</p>
+                    <p><i class="fa fa-phone-alt"></i>{{ settings.home.GenericSettings.company_phone }}</p>
+                    <p><i class="fa fa-envelope"></i>{{ settings.home.GenericSettings.company_email }}</p>
+                    <div class="footer-social">
+                        {% for block in settings.home.SocialMediaSettings.items %}
+                            <a href="{{ block.value.url }}" aria-label="{{ block.value.name }}" target="_blank">{{ block.value.icon|safe }}</a>
+                        {% endfor %}
+                        {% comment %} <a href=""><i class="fab fa-twitter"></i></a>
+                        <a href=""><i class="fab fa-facebook-f"></i></a>
+                        <a href=""><i class="fab fa-youtube"></i></a>
+                        <a href=""><i class="fab fa-instagram"></i></a>
+                        <a href=""><i class="fab fa-linkedin-in"></i></a> {% endcomment %}
+                    </div>
+                </div>
+            </div>
+            {% comment %} <div class="col-md-6 col-lg-3">
+                <div class="footer-link">
+                    <h2>Services Areas</h2>
+                    <a href="">Building Construction</a>
+                    <a href="">House Renovation</a>
+                    <a href="">Architecture Design</a>
+                    <a href="">Interior Design</a>
+                    <a href="">Painting</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="footer-link">
+                    <h2>Useful Pages</h2>
+                    <a href="">About Us</a>
+                    <a href="">Contact Us</a>
+                    <a href="">Our Team</a>
+                    <a href="">Projects</a>
+                    <a href="">Testimonial</a>
+                </div>
+            </div> {% endcomment %}
+            {% flat_menu 'policy' template='menus/policy.html' show_menu_heading=True %}
+            {% main_menu template='menus/policy.html' show_menu_heading=True %}
+
+            <div class="col-md-6 col-lg-3">
+                <div class="newsletter">
+                    <h2>Newsletter</h2>
+                    <p>
+                        Subscribe to our newsletter to know about newest projects and promotions.
+                    </p>
+                    <form id="newsletter" method="post" action={% url 'newsletter:index' %}>
+                    <div class="form">
+                        {% csrf_token %}
+                        {% newsletter_form as form %}
+                        {% for field in form %}
+                        {{ field }}
+                        <small class="text-danger"></small>
+                        {% endfor %}
+                        <button class="btn" type="submit">Submit</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="container copyright">
+        <hr>
+        <p class="text-center m-2">This site is protected by reCAPTCHA and the Google
+            <a class="text-light" href="https://policies.google.com/privacy">Privacy Policy</a> and
+            <a class="text-light" href="https://policies.google.com/terms">Terms of Service</a> apply.
+        </p>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <p>&copy; {% now "Y" %} <a href="/">{{ current_site.site_name }}</a>, All Right Reserved.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="module">
+    import axios from 'axios';
+    const form = document.getElementById('newsletter');
+    
+    console.log(form);
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        const formData = new FormData(form);
+
+        axios.post('{% url "newsletter:index" %}', formData)
+        .then(function(response) {
+            const _data = response.data;
+            // {"url": "/newsletter_/success/"}
+            window.location.href = _data.url;
+
+        }).catch(function(error) {
+            const _data = error.response.data;
+            for (const [key, value] of Object.entries(_data.errors)) {
+                const field = form.querySelector(`[name="${key}"]`);
+                const helpBlock = field.nextElementSibling;
+                helpBlock.textContent = value[0];
+            }
+        })
+    });
+</script>
+<!-- Footer End -->

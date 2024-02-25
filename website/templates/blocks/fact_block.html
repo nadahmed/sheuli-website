@@ -1,0 +1,26 @@
+{% load wagtailimages_tags %}
+
+<!-- Fact Start -->
+<div class="fact">
+    <div class="container-fluid">
+        <div class="row counters">
+            {% for item in value.items %}
+            <div class="col wow {% cycle 'fact-left' 'fact-right' %} slideInUp">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="fact-icon">
+                            {% image item.image height-64 %}
+                            {% comment %} <i class="flaticon-worker"></i> {% endcomment %}
+                        </div>
+                        <div class="fact-text">
+                            <h2 data-toggle="counter-up">{{ item.number }}</h2>
+                            <p>{{ item.title }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!-- Fact End -->

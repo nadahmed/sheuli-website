@@ -1,4 +1,6 @@
-{% load static wagtailcore_tags wagtailuserbar %}
+{% load static wagtailcore_tags wagtailuserbar wagtailimages_tags %}
+{% load i18n %}
+{% load menu_tags %}
 
 <!DOCTYPE html>
 <html class="no-js" lang="en">
@@ -9,19 +11,19 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    {% block meta_tag %}
-    <title>
+    <title>            
         {% block title %}
         {% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}
         {% endblock %}
         {% block title_suffix %}
         {% wagtail_site as current_site %}
-        {% if current_site and current_site.site_name %}- {{ current_site.site_name }}{% endif %}
+        {% if current_site and current_site.site_name %}| {{ current_site.site_name }}{% endif %}
         {% endblock %}
     </title>
     {% if page.search_description %}
     <meta name="description" content="{{ page.search_description }}" />
     {% endif %}
+    {% block meta_tag %}
     {% endblock %}
 
 
@@ -31,19 +33,20 @@
     {% endif %}
 
     <!-- All css files are included here. -->
-    <!-- Bootstrap fremwork main css -->
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <!-- Owl Carousel  main css -->
-    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
-    <!-- This core.css file contents all plugings css file. -->
-    <link rel="stylesheet" href="{% static 'css/core.css' %}">
-    <!-- Theme shortcodes/elements style -->
-    <link rel="stylesheet" href="{% static 'css/shortcode/shortcodes.css' %}">
-    <!-- Theme main style -->
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-    <!-- Responsive css -->
-    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- CSS Libraries -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="{% static 'lib/flaticon/font/flaticon.css' %}" rel="stylesheet"> 
+    <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/lightbox/css/lightbox.min.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/slick/slick.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/slick/slick-theme.css' %}" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
     {# Global stylesheets #}
     <link rel="stylesheet" type="text/css" href="{% static 'css/website.css' %}">
 
@@ -52,633 +55,55 @@
     {% endblock %}
     
     <!-- Place favicon.ico in the root directory -->
-    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.svg' %}">
-    <link rel="apple-touch-icon" href="{% static 'images/apple-touch-icon.png' %}">
+    {% image settings.home.GenericSettings.favicon fill-32x32 as logo %}
+    <link rel="shortcut icon" type="image/x-icon" href="{{ logo.url }}">
+    <link rel="apple-touch-icon" href="{{ logo.url }}">
+
+    <script type="importmap">
+        {
+            "imports": {
+                "axios": "https://cdn.skypack.dev/axios"
+            }
+        }
+    </script>
     
+    {% block extra_head %}
+    {# Override this in templates to add extra tags #}
+    {% endblock %}
+        
 </head>
 
 <body class="{% block body_class %}{% endblock %}">
 
-    {% wagtailuserbar 'bottom-left' %}
-
+    {% wagtailuserbar 'bottom-left' %}    
     
-    
-    <!--[if lt IE 8]>
-        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        
-        <!-- Body main wrapper start -->
-        <div class="wrapper">
-            <!-- Start Header Style -->
-        <div id="header" class="htc-header">
-            <!-- Start Header Top -->
-            <div class="htc__header__top bg__cat--1">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
-                            <ul class="heaher__top__left">
-                                <li><i class="fa fa-clock-o"></i>10:00 AM  -  4:00 PM</li>
-                                <li><a href="tel:+8801778487138"><i class="fa fa-phone"></i>(880) 1778 487 138</a></li>
-                                <li><a href="mailto:sheulibuilders@gmail.com"><i class="fa fa-envelope"></i>sheulibuilders@gmail.com</a></li>
-                            </ul>
-                        </div>
-                        {% comment %} <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
-                            <div class="header__top__right">
-                                <ul class="login-register">
-                                    <li><a href="login-register.html">LOGIN</a></li>
-                                    <li class="separator">/</li>
-                                    <li><a href="login-register.html">REGISTER</a></li>
-                                </ul>
-                                <div class="heaher__top__btn">
-                                    <a href="#">Buy Now</a>
-                                </div>
-                            </div>
-                        </div> {% endcomment %}
-                    </div>
-                </div>
-            </div>
-            <!-- End Header Top -->
-            <!-- Start Mainmenu Area -->
-            <div id="sticky-header-with-topbar" class="mainmenu__wrap sticky__header">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-2 col-sm-6 col-xs-7">
-                            <div class="logo">
-                                <a href="/">
-                                    <img src="{% static 'images/logo/logo.png' %}" style="max-width: none; height: 60px" alt="logo image">
-                                </a>
-                            </div>
-                        </div>
-                         <div class="col-md-2 col-sm-6"></div>
-                        <div class="col-md-8 col-sm-6 col-xs-5">
-                            <nav class="main__menu__nav  hidden-xs hidden-sm">
-                                <ul class="main__menu">
-                                    <li><a href="/">HOME</a></li>
-                                    {% comment %} <li><a href="#">ABOUT</a></li> {% endcomment %}
-                                    {% comment %} <li><a href="#">SERVICES</a></li> {% endcomment %}
-                                    <li><a href="/projects">PROJECTS</a></li>
-                                    <li><a href="#">CONTACT</a></li>
-                                </ul>
-                            </nav>
-                            <div class="mobile-menu clearfix visible-xs visible-sm">
-                                <nav id="mobile_dropdown">
-                                    <ul>
-                                        <li><a href="/">Home</a></li>
-                                        {% comment %} <li><a href="#">ABOUT</a></li> {% endcomment %}
-                                        {% comment %} <li><a href="#">SERVICES</a></li> {% endcomment %}
-                                        <li><a href="/projects">PROJECTS</a></li>
-                                        <li><a href="#">contact</a></li>
-                                    </ul>
-                                </nav>
-                            </div> 
-                        </div>
-                        {% comment %} <div class="col-md-2 col-sm-6 hidden-xs">
-                            <div class="htc__header__search">
-                                <input type="text" placeholder="SEARCH">
-                                <a href="#"><i class="fa fa-search"></i></a>
-                            </div>
-                        </div> {% endcomment %}
-                    </div>
-                    <div class="mobile-menu-area"></div>
-                </div>
-            </div>
-            <!-- End Mainmenu Area -->
-        </div>
-        <!-- End Header Style -->
-        
+    <div class="wrapper">
+        {% include "includes/topbar.html" %}
+        {% main_menu max_levels=3 template="includes/nav.html" %}
         {% block content %}{% endblock %}
-
-
-        {% comment %} <!-- Start Team Area -->
-        <section class="htc__team__area bg__white h1__team--one ptb--150 text__pos">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="section__title text-center">
-                            <h2 class="title__line">OUR <span class="text--theme">TEAM</span></h2>
-                            <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="htc__team__wrap clearfix mt--30">
-                        <!-- Start Single Team -->
-                        <div class="col-md-3 col-lg-3 col-sm-4 col-xs-12">
-                            <div class="team foo">
-                                <div class="team__inner">
-                                    <div class="team__thumb">
-                                        <img src="images/team/1.jpg" alt="team image">
-                                    </div>
-                                    <div class="team__hover__info">
-                                        <ul class="team__social__link">
-                                            <li><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
-
-                                            <li><a href="#" target="_blank"><i class="fa fa-instagram"></i></a></li>
-
-                                            <li><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
-
-                                            <li><a href="#" target="_blank"><i class="fa fa-google-plus"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="team__details">
-                                    <h2><a href="#">STAWART SMITH</a></h2>
-                                    <h4>Chief Engineer</h4>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Team -->
-                        <!-- Start Single Team -->
-                        <div class="col-md-3 col-lg-3 col-sm-4 col-xs-12">
-                            <div class="team foo">
-                                <div class="team__inner">
-                                    <div class="team__thumb">
-                                        <img src="images/team/2.jpg" alt="team image">
-                                    </div>
-                                    <div class="team__hover__info">
-                                        <ul class="team__social__link">
-                                            <li><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
-
-                                            <li><a href="#" target="_blank"><i class="fa fa-instagram"></i></a></li>
-
-                                            <li><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
-
-                                            <li><a href="#" target="_blank"><i class="fa fa-google-plus"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="team__details">
-                                    <h2><a href="#">KALVIN MOMEN</a></h2>
-                                    <h4>KALVIN MOMEN</h4>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Team -->
-                        <!-- Start Single Team -->
-                        <div class="col-md-3 col-lg-3 col-sm-4 col-xs-12">
-                            <div class="team foo">
-                                <div class="team__inner">
-                                    <div class="team__thumb">
-                                        <img src="images/team/3.jpg" alt="team image">
-                                    </div>
-                                    <div class="team__hover__info">
-                                        <ul class="team__social__link">
-                                            <li><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
-
-                                            <li><a href="#" target="_blank"><i class="fa fa-instagram"></i></a></li>
-
-                                            <li><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
-
-                                            <li><a href="#" target="_blank"><i class="fa fa-google-plus"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="team__details">
-                                    <h2><a href="#">ANDREW SIMONS</a></h2>
-                                    <h4>Chief Electicians</h4>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Team -->
-                        <!-- Start Single Team -->
-                        <div class="col-md-3 col-lg-3 hidden-sm col-xs-12">
-                            <div class="team foo">
-                                <div class="team__inner">
-                                    <div class="team__thumb">
-                                        <img src="images/team/4.jpg" alt="team image">
-                                    </div>
-                                    <div class="team__hover__info">
-                                        <ul class="team__social__link">
-                                            <li><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
-
-                                            <li><a href="#" target="_blank"><i class="fa fa-instagram"></i></a></li>
-
-                                            <li><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
-
-                                            <li><a href="#" target="_blank"><i class="fa fa-google-plus"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="team__details">
-                                    <h2><a href="#">MARK TAYLOR</a></h2>
-                                    <h4>Chief Engineer</h4>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Team -->
-                    </div>
-                </div>
-            </div>
-            <div class="text__shape">
-                <h2>TEAM</h2>
-            </div>
-        </section>
-        <!-- End Team Area --> {% endcomment %}
-
-        <!-- Start Testimonial Area -->
-        <section class="htc__testimonial__area ptb--130" data--gray__overlay="9.5" style="background: rgba(0, 0, 0, 0) url({% static 'images/bg/1.jpg' %}) no-repeat fixed center center / cover ;">
-            <div class="container">
-                <div class="row">
-                    {% comment %} <div class="col-md-6 col-lg-5 col-sm-12 col-xs-12">
-                        <div class="htc__testimonial__wrap">
-                            <div class="section__title text-left">
-                                <h2 class="title__line">CLIENTS <span class="text--theme">SAYS</span></h2>
-                                <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasur</p>
-                            </div>
-                            <div class="testimonial__activation clearfix">
-                                 <!-- Start Single Testimonial -->
-                                <div class="testimonial">
-                                    <div class="testimonial__thumb">
-                                         <img src="images/test/client/1.jpg" alt="clint image">
-                                    </div>
-                                    <div class="testimonial__details">
-                                        <div class="tes__icon">
-                                            <i class="fa fa-quote-right"></i>
-                                        </div>
-                                        <p>On the other hand, we denounce with righteous indignation and the tdislike men who are beguiled </p>
-                                        <h2><a href="#">Ken Williams</a></h2>
-                                        <h4>CEO, Alves</h4>
-                                    </div>
-                                </div>
-                                 <!-- End Single Testimonial -->
-                                 <!-- Start Single Testimonial -->
-                                <div class="testimonial">
-                                    <div class="testimonial__thumb">
-                                         <img src="images/test/client/1.jpg" alt="clint image">
-                                    </div>
-                                    <div class="testimonial__details">
-                                        <div class="tes__icon">
-                                            <i class="fa fa-quote-right"></i>
-                                        </div>
-                                        <p>On the other hand, we denounce with righteous indignation and the tdislike men who are beguiled </p>
-                                        <h2><a href="#">Ken Williams</a></h2>
-                                        <h4>CEO, Alves</h4>
-                                    </div>
-                                </div>
-                                 <!-- End Single Testimonial -->
-                                 <!-- Start Single Testimonial -->
-                                <div class="testimonial">
-                                    <div class="testimonial__thumb">
-                                         <img src="images/test/client/1.jpg" alt="clint image">
-                                    </div>
-                                    <div class="testimonial__details">
-                                        <div class="tes__icon">
-                                            <i class="fa fa-quote-right"></i>
-                                        </div>
-                                        <p>On the other hand, we denounce with righteous indignation and the tdislike men who are beguiled </p>
-                                        <h2><a href="#">Ken Williams</a></h2>
-                                        <h4>CEO, Alves</h4>
-                                    </div>
-                                </div>
-                                 <!-- End Single Testimonial -->
-                            </div>
-                        </div>
-                    </div> {% endcomment %}
-                    <div class="col-md-6 col-lg-6  col-lg-offset-3 col-sm-12 col-xs-12 smt-40">
-                        <div class="reguest__quote">
-                            <div class="section__title text-left">
-                                <h2 class="title__line">REQUEST A <span class="text--theme">QUOTE</span></h2>
-                                <p>Unlocking Your Project's Potential. Our team is ready to turn your vision into a reality. Let's discuss your project and create a tailored quote that aligns with your goals. Get in touch today to embark on a journey of exceptional craftsmanship and construction excellence.</p>
-                            </div>
-                            <form id="contact-form" action="#" method="post">
-                                <div class="clint__comment__form">
-                                    <div class="single__cl__form">
-                                        <input name="name" type="text" placeholder="Name">
-                                        <input name="email" type="email" placeholder="Email">
-                                    </div>
-                                    <div class="single__cl__form">
-                                        <input name="telephone" type="tel" placeholder="Phone">
-                                        <input name="subject" type="text" placeholder="Subject">
-                                    </div>
-                                    <div class="single__cl__message">
-                                        <textarea name="message" placeholder="Message"></textarea>
-                                    </div>
-                                    <div class="clint__submit__btn">
-                                        <button class="submit htc__btn" type="submit" disabled>
-                                            SEND MESSAGE 
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                            <p class="form-messege"></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- End Testimonial Area -->
-        {% comment %} <!-- Start Blog Area -->
-        <section class="htc__blog__area pt--150 bg__white">
-            <div class="container">
-                <div class="row">
-                    <div class="section__title text-center">
-                        <h2 class="title__line">LATEST <span class="text--theme">BLOG</span></h2>
-                        <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="htc__blog__wrap mt--30 clearfix">
-                        <!-- Start Single Blog -->
-                        <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
-                            <div class="blog foo">
-                                <div class="blog__thumb">
-                                    <a href="blog-details.html">
-                                        <img src="images/blog/blog-img/1.jpg" alt="blog image">
-                                    </a>
-                                    <div class="blog__hover__info">
-                                        <ul class="blog__meta">
-                                            <li>By : <a href="#">Kalvin</a></li>
-                                            <li>20 July</li>
-                                            <li><a href="#">Comments 5</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="blog__details">
-                                    <h2><a href="blog-details.html">Lorem ipsum dolor sit amet, cotur adipiscing elit, sed do eiusmod </a></h2>
-                                    <div class="blog__btn">
-                                        <a href="blog-details.html">READ MORE<i class="zmdi zmdi-long-arrow-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Blog -->
-                        <!-- Start Single Blog -->
-                        <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
-                            <div class="blog foo">
-                                <div class="blog__thumb">
-                                    <a href="blog-details.html">
-                                        <img src="images/blog/blog-img/2.jpg" alt="blog image">
-                                    </a>
-                                    <div class="blog__hover__info">
-                                        <ul class="blog__meta">
-                                            <li>By : <a href="#">Kalvin</a></li>
-                                            <li>20 July</li>
-                                            <li><a href="#">Comments 5</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="blog__details">
-                                    <h2><a href="blog-details.html">Lorem ipsum dolor sit amet, cotur adipiscing elit, sed do eiusmod </a></h2>
-                                    <div class="blog__btn">
-                                        <a href="blog-details.html">READ MORE<i class="zmdi zmdi-long-arrow-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Blog -->
-                        <!-- Start Single Blog -->
-                        <div class="col-md-4 col-lg-4 hidden-sm col-xs-12">
-                            <div class="blog foo">
-                                <div class="blog__thumb">
-                                    <a href="blog-details.html">
-                                        <img src="images/blog/blog-img/3.jpg" alt="blog image">
-                                    </a>
-                                    <div class="blog__hover__info">
-                                        <ul class="blog__meta">
-                                            <li>By : <a href="#">Kalvin</a></li>
-                                            <li>20 July</li>
-                                            <li><a href="#">Comments 5</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="blog__details">
-                                    <h2><a href="blog-details.html">Lorem ipsum dolor sit amet, cotur adipiscing elit, sed do eiusmod </a></h2>
-                                    <div class="blog__btn">
-                                        <a href="blog-details.html">READ MORE<i class="zmdi zmdi-long-arrow-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Blog -->
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- End Blog Area --> {% endcomment %}
-
-        {% comment %} <!-- Start Brand Area -->
-        <div class="htc__brand__area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <ul class="brand__list">
-                            <li><a href="#"><img src="images/brand/1.jpg" alt="brand images"></a></li>
-                            <li><a href="#"><img src="images/brand/2.jpg" alt="brand images"></a></li>
-                            <li><a href="#"><img src="images/brand/3.jpg" alt="brand images"></a></li>
-                            <li><a href="#"><img src="images/brand/4.jpg" alt="brand images"></a></li>
-                            <li><a href="#"><img src="images/brand/5.jpg" alt="brand images"></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Brand Area --> {% endcomment %}
-
-        {% comment %} <!-- Start Newsletter Area -->
-        <section class="htc__newsletter__area ptb--90 bg__gray">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="newsletter__wrap">
-                            <h2 class="title__line">SUBSCRIBE <span class="text--theme">NEWSLETTER</span></h2>
-                            <h4>Subscribe our newsletter and get latest update</h4>
-                            <div class="newsletter__form">
-                                <div class="input__box">
-                                    <div id="mc_embed_signup">
-                                        <form action="#" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-                                            <div id="mc_embed_signup_scroll" class="htc__news__inner">
-                                                <div class="news__input">
-                                                    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Email Address" required>
-                                                </div>
-                                                <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-                                                <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_6bbb9b6f5827bd842d9640c82_05d85f18ef" tabindex="-1" value=""></div>
-                                                <div class="clearfix subscribe__btn"><input type="submit" value="SUBSCRIBE NOW" name="subscribe" id="mc-embedded-subscribe" class="bst__btn btn--white__color">
-                                                    
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>        
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="newsletter__thumb">
-                <div class="newsletter__thumb__inner">
-                    <img src="images/others/1.png" alt="newsletter img">
-                </div>
-            </div>
-        </section>
-        <!-- End Newsletter Area --> {% endcomment %}
-        <!-- Start Contact Address -->
-        <div class="htc__contact__address add-res bg__cat--1">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="htc__contact__wrap clearfix">
-                            <!-- Start Single Address -->
-                            <div class="ht__address__inner">
-                                <div class="ht__address__icon map-pin">
-                                    <i class="zmdi zmdi-pin"></i>
-                                </div>
-                                <div class="ht__address__details">
-                                    <p>33/35 Jafri Bhaban, <br>Kawran Bazar, Dhaka-1215</p>
-                                </div>
-                            </div>
-                            <!-- End Single Address -->
-                            <!-- Start Single Address -->
-                            <div class="ht__address__inner">
-                                <div class="ht__address__icon glob">
-                                    <i class="fa fa-globe" aria-hidden="true"></i>
-                                </div>
-                                <div class="ht__address__details">
-                                    <p><a href="mailto:sheulibuilders@gmail.com">sheulibuilders@gmail.com</a></p>
-                                    <p><a href="https://www.sheuli.com">https://www.sheuli.com</a></p>
-                                </div>
-                            </div>
-                            <!-- End Single Address -->
-                            <!-- Start Single Address -->
-                            <div class="ht__address__inner">
-                                <div class="ht__address__icon">
-                                    <i class="fa fa-phone" aria-hidden="true"></i>
-                                </div>
-                                <div class="ht__address__details">
-                                    {% comment %} <p><a href="#">(001) 24568 365 987</a></p> {% endcomment %}
-                                    <p><a href="tel:+8801778487138">(880) 1778 487 138</a></p>
-                                    <p><a href="tel:+8801778487138">(880) 1778 487 138</a></p>
-                                </div>
-                            </div>
-                            <!-- End Single Address -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Contact Address -->
-        <!-- Start Footer Area -->
-        <footer class="htc__footer__area">
-            <div class="footer__top ptb--130" data--1f2d30__overlay="9.5" style="background: rgba(0, 0, 0, 0) url({% static 'images/bg/2.jpg' %}) no-repeat fixed center center / cover ;">
-                <div class="container">
-                    <div class="row">
-                        <div class="htc__footer__wrap clearfix">
-                            <!-- Start Single Footer -->
-                            <div class="col-md-3 col-lg-3 col-sm-6 col-xs-12">
-                                <div class="footer foo">
-                                    <div class="footer__widget">
-                                        <h2 class="ft__title">ABOUT</h2>
-                                    </div>
-                                    <div class="ft__details">
-                                        <p>Crafting Dreams, Building Realities. With years of excellence, we turn visions into lasting structures. Join us to build a trusted future together.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Footer -->
-                            <!-- Start Single Footer -->
-                            <div class="col-md-3 col-lg-3 col-sm-6 col-xs-12 xmt-40">
-                                <div class="footer quick__link foo">
-                                    <div class="footer__widget">
-                                        <h2 class="ft__title">QUICK LINKS</h2>
-                                    </div>
-                                    <div class="footer__link">
-                                        <ul class="ft__menu">
-                                            <li><a href="#">Services</a></li>
-                                            <li><a href="#">Projects</a></li>
-                                            <li><a href="#">Features</a></li>
-                                            <li><a href="#">blog</a></li>
-                                        </ul>
-                                        <ul class="ft__menu">
-                                            <li><a href="#">Quote</a></li>
-                                            <li><a href="#">Projects</a></li>
-                                            <li><a href="#">Contact</a></li>
-                                            <li><a href="#">Features</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Footer -->
-                            <!-- Start Single Footer -->
-                            <div class="col-md-3 col-lg-3 col-sm-6 col-xs-12 smt-40 xmt-40">
-                                <div class="footer foo">
-                                    <div class="footer__widget">
-                                        <h2 class="ft__title">INSTAGRAM</h2>
-                                    </div>
-                                    <ul class="footer__instagram">
-                                        <li><a href="#"><img src="{% static 'images/blog/sm-img/1.jpg' %}" alt="images"></a></li>
-                                        <li><a href="#"><img src="{% static 'images/blog/sm-img/2.jpg' %}" alt="images"></a></li>
-                                        <li><a href="#"><img src="{% static 'images/blog/sm-img/3.jpg' %}" alt="images"></a></li>
-                                        <li><a href="#"><img src="{% static 'images/blog/sm-img/4.jpg' %}" alt="images"></a></li>
-                                        <li><a href="#"><img src="{% static 'images/blog/sm-img/5.jpg' %}" alt="images"></a></li>
-                                        <li><a href="#"><img src="{% static 'images/blog/sm-img/6.jpg' %}" alt="images"></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- End Single Footer -->
-                            <!-- Start Single Footer -->
-                            <div class="col-md-3 col-lg-2 col-lg-offset-1 col-sm-6 col-xs-12 smt-40 xmt-40">
-                                <div class="footer foo">
-                                    <div class="footer__widget">
-                                        <h2 class="ft__title">INQUARY</h2>
-                                        <div class="footer__link">
-                                            <ul class="ft__menu">
-                                                <li><a href="#">Construction</a></li>
-                                                <li><a href="#">Architecture</a></li>
-                                                <li><a href="#">Plambing</a></li>
-                                                <li><a href="#">Plambing</a></li>
-                                            </ul>
-                                            <ul class="ft__menu">
-                                                <li><a href="#">Painting</a></li>
-                                                <li><a href="#">Roofing</a></li>
-                                                <li><a href="#">Plambing</a></li>
-                                                <li><a href="#">Features</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Footer -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="copyright bg__theme">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div class="copyright__inner">
-                                <p>Copyright - <a href="/" target="_blank">Sheuli Builders.</a>
-                                All Rights Reserved 2023.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <!-- End Footer Area -->
+        {% include "includes/footer.html" %}
     </div>
-    <!-- Body main wrapper end -->
-    
-    
+        
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'lib/wow/wow.min.js' %}"></script>
+    <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'lib/isotope/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'lib/lightbox/js/lightbox.min.js' %}"></script>
+    <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
+    <script src="{% static 'lib/counterup/counterup.min.js' %}"></script>
+    <script src="{% static 'lib/slick/slick.min.js' %}"></script>
+
+
+
+    <!-- Template Javascript -->
+    <script src="{% static 'js/main.js' %}"></script>
     {# Global javascript #}
     <script type="text/javascript" src="{% static 'js/website.js' %}"></script>
     
-    <!-- Modernizr JS -->
-    <script src="{% static 'js/vendor/modernizr-2.8.3.min.js' %}"></script>
-    
-    <!-- Placed js at the end of the document so the pages load faster -->
-    
-    <!-- jquery latest version -->
-    <script src="{% static 'js/vendor/jquery-1.12.0.min.js' %}"></script>
-    <!-- Bootstrap framework js -->
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <!-- All js plugins included in this file. -->
-    <script src="{% static 'js/plugins.js' %}"></script>
-    <script src="{% static 'js/slick.min.js' %}"></script>
-    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
-    <!-- Waypoints.min.js. -->
-    <script src="{% static 'js/waypoints.min.js' %}"></script>
-    <!-- Main js file that contents all jQuery plugins activation. -->
-    <script src="{% static 'js/main.js' %}"></script>
     {% block extra_js %}
     {# Override this in templates to add extra javascript #}
     {% endblock %}
