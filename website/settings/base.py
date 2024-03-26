@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     "newsletter",
 
     'captcha',
+    'robots',
     'wagtail_modeladmin',
     'wagtailmetadata',
     'wagtailmenus',
@@ -140,7 +141,10 @@ USE_L10N = True
 
 USE_TZ = True
 
-WAGTAIL_I18N_ENABLED = True
+WAGTAIL_I18N_ENABLED = False
+
+WAGTAIL_ENABLE_UPDATE_CHECK = False
+WAGTAIL_ENABLE_WHATS_NEW_BANNER = False
 
 
 # Static files (CSS, JavaScript, Images)

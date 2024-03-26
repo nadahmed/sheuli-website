@@ -12,6 +12,7 @@ from search import views as search_views
 
 
 urlpatterns = [
+    path('robots.txt', include('robots.urls')),
     path('sitemap.xml', sitemap),
     path("django-admin/", admin.site.urls),
     path("admin/", include(wagtailadmin_urls)),
