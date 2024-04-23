@@ -8,7 +8,7 @@
             {% for item in value.items %}
             <div class="col-lg-{{ width }} col-md-12">
                 <div class="feature-item">
-                    {% image item.image fill-80x80 %}
+                    {% image item.image fill-80x80 loading="lazy" width=80 height=80 %}
                     <div class="feature-text">
                         <h2>{{ item.title }}</h2>
                         <p>{{ item.description }}</p>

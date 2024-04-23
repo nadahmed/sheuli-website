@@ -7,7 +7,7 @@
             <div class="col-12">
                 <div class="testimonial-slider-nav">
                     {% for item in value.items %}
-                    <div class="slider-nav">{% image item.image fill-200x200 %}</div>
+                    <div class="slider-nav">{% image item.image fill-200x200 loading="lazy" width=200 height=200 %}</div>
                     {% endfor %}
                 </div>
             </div>

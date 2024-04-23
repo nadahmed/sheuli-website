@@ -6,7 +6,7 @@
         <div class="row align-items-center">
             <div class="col-lg-5 col-md-6 {% if value.image_position == 'right' %} order-last {% endif %}">
                 <div class="about-img">
-                    {% image value.image fill-700x800 %}
+                    {% image value.image fill-700x800 loading="lazy" width=700 height=800 %}
                 </div>
             </div>
             <div class="col-lg-7 col-md-6">
