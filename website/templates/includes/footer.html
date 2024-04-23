@@ -75,10 +75,12 @@
     
     <div class="container copyright">
         <hr>
+        {% if settings.home.ReCaptchaSetting.RECAPTCHA_PUBLIC_KEY and settings.home.ReCaptchaSetting.RECAPTCHA_PRIVATE_KEY %}
         <p class="text-center m-2">This site is protected by reCAPTCHA and the Google
             <a class="text-light" href="https://policies.google.com/privacy">Privacy Policy</a> and
             <a class="text-light" href="https://policies.google.com/terms">Terms of Service</a> apply.
         </p>
+        {% endif %}
         <div class="row">
             <div class="col-md-12 text-center">
                 <p>&copy; {% now "Y" %} <a href="/">{{ current_site.site_name }}</a>, All Right Reserved.</p>
@@ -92,7 +94,6 @@
     import axios from 'axios';
     const form = document.getElementById('newsletter');
     
-    console.log(form);
     form.addEventListener('submit', function(e) {
         e.preventDefault();
         e.stopPropagation();
