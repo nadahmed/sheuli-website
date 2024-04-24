@@ -33,7 +33,7 @@
                         <div class="portfolio-img">
                             {% for block in project.images|slice:":1" %}
                             {% if block.block_type == 'image' %}
-                            {% image block.value fill-500x300 format-webp %}
+                            {% image block.value fill-500x300 %}
                             {% endif %}
                             {% endfor %}
                             {% comment %} <img src="{% static 'img/portfolio-1.jpg' %}" alt="Image"> {% endcomment %}

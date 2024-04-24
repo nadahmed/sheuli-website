@@ -14,7 +14,7 @@
                     <div class="service-img">
                         {% for block in project.images|slice:":1" %}
                             {% if block.block_type == 'image' %}
-                                {% image block.value fill-400x400 format-webp loading="lazy" width=400 height=400 %}
+                                {% image block.value fill-400x400 loading="lazy" width=400 height=400 %}
                             {% endif %}
                         {% endfor %}
                         {% comment %} <img src="{% static 'img/service-1.jpg' %}" alt="Image"> {% endcomment %}
