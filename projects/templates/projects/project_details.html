@@ -42,7 +42,7 @@
                     <div class="portfolio-img">
                         {% for block in project.images|slice:":1" %}
                         {% if block.block_type == 'image' %}
-                        {% image block.value fill-500x300 %}
+                        {% image block.value fill-500x300 format-webp %}
                         {% endif %}
                         {% endfor %}
                         {% comment %} <img src="{% static 'img/portfolio-1.jpg' %}" alt="Image"> {% endcomment %}
@@ -82,7 +82,7 @@
         items: [
         {% for block in page.images %}
         {% if block.block_type == 'image' %}
-        {% image block.value original as img %}
+        {% image block.value original format-webp as img %}
         { src: '{{ img.url }}', srct: '{{ img.url }}', title: '{{ block.value.title }}' },
         {% endif %}
         {% endfor %}

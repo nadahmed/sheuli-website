@@ -6,7 +6,7 @@
     <div class="carousel-inner">
         {% for block in value.items %}
         <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %}">
-            {% image block.background_image fill-1920x1080 %}
+            {% image block.background_image fill-1920x1080 format-webp %}
             <div class="carousel-caption">
                 <p class="animated fadeInRight">{{ block.sub_title }}</p>
                 <h1 class="animated fadeInLeft">{{ block.title }}</h1>
