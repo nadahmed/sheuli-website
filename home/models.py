@@ -63,3 +63,7 @@ class SocialMediaSettings(BaseGenericSetting):
 class ReCaptchaSetting(BaseGenericSetting):
     RECAPTCHA_PUBLIC_KEY = models.CharField(max_length=255, blank=True, null=True)
     RECAPTCHA_PRIVATE_KEY = models.CharField(max_length=255, blank=True, null=True)
+
+    @property
+    def enabled(self) -> bool:
+        return self.RECAPTCHA_PUBLIC_KEY and self.RECAPTCHA_PRIVATE_KEY

@@ -104,8 +104,25 @@
     <script src="{% static 'lib/lightbox/js/lightbox.min.js' %}"></script>
     <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
     <script src="{% static 'lib/counterup/counterup.min.js' %}"></script>
-    <script src="{% static 'lib/slick/slick.min.js' %}"></script>
+    {% if settings.home.ReCaptchaSetting.enabled %}
+    <script>
+        var CaptchaCallback = () => {
+            document.querySelectorAll('.captcha').forEach(function(el) {
+                console.log(el)
+                grecaptcha.render(el, {
+                    'sitekey' : '{{ settings.home.ReCaptchaSetting.RECAPTCHA_PUBLIC_KEY }}',
+                    'size' : 'invisible',
+                });
+            });
+            grecaptcha.execute();
+        };
 
+    </script>
+    </script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=CaptchaCallback" async defer></script>
+    {% endif %}
+    <script src="{% static 'lib/slick/slick.min.js' %}"></script>
+    
 
 
     <!-- Template Javascript -->

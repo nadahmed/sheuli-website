@@ -43,6 +43,9 @@
                             <p class="help-block text-danger"></p>
                         </div>
                         {% endfor %}
+                        {% if settings.home.ReCaptchaSetting.enabled %}
+                        <div class="captcha"></div>
+                        {% endif %}
                         <div>
                             <button class="btn" type="submit" id="sendMessageButton">Send Message</button>
                         </div>

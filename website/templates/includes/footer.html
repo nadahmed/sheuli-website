@@ -64,6 +64,9 @@
                         {{ field }}
                         <small class="text-danger"></small>
                         {% endfor %}
+                        {% if settings.home.ReCaptchaSetting.enabled %}
+                        <div class="captcha"></div>
+                        {% endif %}
                         <button class="btn" type="submit">Submit</button>
                     </div>
                     </form>
@@ -75,7 +78,7 @@
     
     <div class="container copyright">
         <hr>
-        {% if settings.home.ReCaptchaSetting.RECAPTCHA_PUBLIC_KEY and settings.home.ReCaptchaSetting.RECAPTCHA_PRIVATE_KEY %}
+        {% if settings.home.ReCaptchaSetting.enabled %}
         <p class="text-center m-2">This site is protected by reCAPTCHA and the Google
             <a class="text-light" href="https://policies.google.com/privacy">Privacy Policy</a> and
             <a class="text-light" href="https://policies.google.com/terms">Terms of Service</a> apply.
@@ -94,7 +97,6 @@
     import axios from 'axios';
     const form = document.getElementById('newsletter');
     
-    console.log(form);
     form.addEventListener('submit', function(e) {
         e.preventDefault();
         e.stopPropagation();
